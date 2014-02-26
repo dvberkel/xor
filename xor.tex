@@ -5,17 +5,59 @@
 
 \usepackage{amsmath}
 
+\newcommand{\lt}{\ensuremath{<}}
+
 \begin{document}
   \maketitle
+
+  Let $\left(X_{n}\right)_{n=0}^{\infty}$ be a sequence of random variables
+  such that $P(X_{n} = 1) = p$ for all $n$ with $0 \lt p \lt 1$.
+
+  Define $Y_{m} := \oplus_{n=0}^{m}X_{n} = X_{0} \oplus \ldots \oplus
+  X_{m}$. We will show that
+  \[
+    \lim_{m \rightarrow \infty} P(Y_{m} = 0) = \frac{1}{2}
+  \]
+
+  \[
+    P(Y_{m} = 0) = \sum_{n=0,2|n}^{m}{\binom{m}{n}p^{n}(1-p)^{m-n}}
+  \]
+
+  The only way for $Y_{m}$ to be zero is that there are an even number
+  of variable $X_{n}$ that equal one. With a little help of
+  combinatorics it becomes clear that there are $\binom{m}{n}$ ways of
+  selecting $n$ of $m$ variables. The chance of only these variable
+  being one is $\binom{m}{n}p^{n}(1-p)^{m-n}$. Therefore
+  $P(Y_{m} = 0) = \sum_{n=0,2|n}^{m}{\binom{m}{n}p^{n}(1-p)^{m-n}}$ as stated.
+
   \[
     \sum_{n=0,2|n}^{m}{\binom{m}{n}p^{n}(1-p)^{m-n}} = \frac{1+(1-2p)^{m}}{2}
   \]
 
+  We can express various numbers as a sum involving binomials. For example
+
   \[
-    1 = (p + (1-p))^{m} = \sum_{n=0}^{m}{\binom{m}{n}p^{n}(1-p)^{m-n}}
+    1 = \left(p + (1-p)\right)^{m} = \sum_{n=0}^{m}{\binom{m}{n}p^{n}(1-p)^{m-n}}
   \]
+
+  and
 
   \[
     (1 - 2p)^{m} = ((1-p) - p)^{m} = \sum_{n=0}^{m}{\binom{m}{n}(-p)^{n}(1-p)^{m-n}} = \sum_{n=0,2|n}^{m}{\binom{m}{n}p^{n}(1-p)^{m-n}} - \sum_{n=0,2\not | n}^{m}{\binom{m}{n}p^{n}(1-p)^{m-n}}
   \]
+
+  adding both expression and one can see that
+
+  \[
+    2 \sum_{n=0,2|n}^{m}{\binom{m}{n}p^{n}(1-p)^{m-n}} = 1 + (1 - 2p)^{m}
+  \]
+
+  from which the claim follows.
+
+  \[
+    \lim_{m \rightarrow \infty} \frac{1 + (1-2p)^{m}}{2} = \frac{1}{2}
+  \]
+
+  Note that $0 \lt p \lt 1$. Therefor the following chain of relations
+  follows $0 \lt 2p \lt 2$, $-2 \lt -2p \lt 0$ and $-1 \lt 1 - 2p \lt 1$.
 \end{document}
